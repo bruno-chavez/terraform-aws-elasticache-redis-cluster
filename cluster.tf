@@ -8,7 +8,6 @@ resource "aws_elasticache_replication_group" "redis_cluster" {
 
   subnet_group_name = aws_elasticache_subnet_group.redis_cluster_subnet_group.name
   security_group_ids = [aws_security_group.redis_cluster_security_group.id]
-  security_group_names = [aws_security_group.redis_cluster_security_group.name]
 
   automatic_failover_enabled = true
   auto_minor_version_upgrade = true

@@ -5,6 +5,7 @@ resource "aws_elasticache_replication_group" "redis_cluster" {
   availability_zones = var.azs
   auth_token = var.password
   port = var.port
+  engine_version = var.redis_version
 
   subnet_group_name = aws_elasticache_subnet_group.redis_cluster_subnet_group.name
   security_group_ids = [aws_security_group.redis_cluster_security_group.id]

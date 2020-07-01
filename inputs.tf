@@ -29,6 +29,24 @@ variable "port" {
   type = number
 }
 
+variable "maintenance_window" {
+  description = "Weekly time range when maintenance happens"
+  type = string
+  default = "sun:05:00-sun:07:00"
+}
+
+variable "snapshot_window" {
+  description = "Daily time range when snapshots are taken"
+  type = string
+  default = "02:00-04:00"
+}
+
+variable "snapshot_retention_limit" {
+  description = "Number of days for which ElastiCache will retain snapshots"
+  type = number
+  default = 7
+}
+
 variable "number_of_shards" {
   description = "Number of shards to have in the cluster "
   type = number
@@ -51,13 +69,13 @@ variable "subnet_ids" {
 }
 
 # Security group variables
-variable "security_group_name" {
-  description = "Name of the created security group"
+variable "vpc_id" {
+  description = "ID of the vpc where the security group will be created"
   type = string
 }
 
-variable "vpc_id" {
-  description = "ID of the vpc where the security group will be created"
+variable "security_group_name" {
+  description = "Name of the created security group"
   type = string
 }
 

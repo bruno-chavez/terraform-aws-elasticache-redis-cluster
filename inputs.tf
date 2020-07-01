@@ -14,11 +14,6 @@ variable "node_type" {
   type = string
 }
 
-variable "azs" {
-  description = "List of Availability Zones to be used by the cluster"
-  type = list(string)
-}
-
 variable "password" {
   description = "Authentication password"
   type = string

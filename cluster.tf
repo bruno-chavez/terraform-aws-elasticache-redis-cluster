@@ -2,7 +2,6 @@ resource "aws_elasticache_replication_group" "redis_cluster" {
   replication_group_id = var.cluster_id
   replication_group_description = var.cluster_description
   node_type = var.node_type
-  availability_zones = var.azs
   auth_token = var.password
   port = var.port
   engine_version = var.redis_version

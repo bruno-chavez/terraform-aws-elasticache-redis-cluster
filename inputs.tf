@@ -63,6 +63,11 @@ variable "subnet_group_name" {
   type = string
 }
 
+variable "subnet_group_description" {
+  description = "Description for the subnet group"
+  type = string
+}
+
 variable "subnet_ids" {
   description = "List of the ids used to create the subnet group"
   type = list(string)

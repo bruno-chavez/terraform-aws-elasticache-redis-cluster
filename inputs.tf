@@ -69,17 +69,7 @@ variable "subnet_ids" {
 }
 
 # Security group variables
-variable "vpc_id" {
-  description = "ID of the vpc where the security group will be created"
+variable "security_group_id" {
+  description = "ID of the security group to attach to the cluster"
   type = string
-}
-
-variable "security_group_name" {
-  description = "Name of the created security group"
-  type = string
-}
-
-variable "security_groups" {
-  description = "List of the security groups able to communicate with the redis cluster"
-  type = list(string)
 }

@@ -10,7 +10,7 @@ resource "aws_elasticache_replication_group" "redis_cluster" {
   snapshot_retention_limit = var.snapshot_retention_limit
 
   subnet_group_name = aws_elasticache_subnet_group.redis_cluster_subnet_group.name
-  security_group_ids = [aws_security_group.redis_cluster_security_group.id]
+  security_group_ids = [var.security_group_id]
 
   automatic_failover_enabled = true
   auto_minor_version_upgrade = true

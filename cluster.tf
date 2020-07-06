@@ -1,5 +1,5 @@
 resource "aws_elasticache_replication_group" "redis_cluster" {
-  replication_group_id = var.cluster_id
+  replication_group_id = var.cluster_name
   replication_group_description = var.cluster_description
   node_type = var.node_type
   auth_token = var.password

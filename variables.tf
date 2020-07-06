@@ -1,5 +1,5 @@
 # Cluster variables
-variable "cluster_id" {
+variable "cluster_name" {
   description = "Name of the Redis cluster"
   type = string
 }

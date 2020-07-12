@@ -1,11 +1,11 @@
 # Cluster variables
 variable "cluster_name" {
-  description = "Name of the Redis cluster"
+  description = "Name for the Redis cluster"
   type = string
 }
 
 variable "cluster_description" {
-  description = "Description of the Redis cluster"
+  description = "Description for the Redis cluster"
   type = string
 }
 
@@ -25,7 +25,7 @@ variable "redis_version" {
 }
 
 variable "port" {
-  description = "Port to be used to communicate with the cluster"
+  description = "Port used for communication between clients and the cluster"
   type = number
 }
 
@@ -48,18 +48,18 @@ variable "snapshot_retention_limit" {
 }
 
 variable "number_of_shards" {
-  description = "Number of shards to have in the cluster "
+  description = "Number of write nodes (shards) in the cluster"
   type = number
 }
 
 variable "replicas_per_shard" {
-  description = "Number of replicas per shard"
+  description = "Number of read replicas per shard"
   type = number
 }
 
 # Subnet group variables
 variable "subnet_group_name" {
-  description = "Name of the created subnet group"
+  description = "Name for the subnet group"
   type = string
 }
 
@@ -69,12 +69,12 @@ variable "subnet_group_description" {
 }
 
 variable "subnet_ids" {
-  description = "List of the ids used to create the subnet group"
+  description = "List of the subnet ids used to create the subnet group"
   type = list(string)
 }
 
 # Security group variables
 variable "security_group_id" {
-  description = "ID of the security group to attach to the cluster"
+  description = "ID of the security group where the cluster will be placed"
   type = string
 }

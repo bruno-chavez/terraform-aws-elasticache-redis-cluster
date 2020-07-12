@@ -1,0 +1,55 @@
+data "aws_vpc" "vpc" {
+  tags = {
+    Name = "vpc"
+  }
+}
+
+data "aws_subnet_ids" "subnets" {
+  vpc_id = data.aws_vpc.vpc.id
+}
+
+data "aws_security_group" "ecs_security_group" {
+  tags = {
+    Name = "ecs-security-group"
+  }
+}
+
+data "aws_ssm_parameter" "redis_cluster_password" {
+  name = "redis-cluster-password"
+}
+
+locals {
+  redis_port = 6379
+}
+
+module "security_group" {
+  source = "github.com/bruno-chavez/tf-closed-security-group"
+
+  name = "redis-cluster-security-group"
+  description = "Security group for the redis cluster"
+  vpc_id = data.aws_vpc.vpc.id
+  protocol = "tcp"
+  ports = [local.redis_port, local.redis_port + 10000]
+
+  access_security_groups = [data.aws_security_group.ecs_security_group.id]
+}
+
+module "redis_cluster" {
+  source = "github.com/bruno-chavez/tf-elasticache-redis-cluster"
+
+  cluster_name = "cache-cluster"
+  cluster_description = "Redis cluster used for caching content"
+  node_type = "cache.t2.micro"
+  password = data.aws_ssm_parameter.redis_cluster_password.value
+  port = local.redis_port
+  redis_version = "5.0.6"
+
+  number_of_shards = 3
+  replicas_per_shard = 1
+
+  subnet_group_name = "redis-cluster-subnet-group"
+  subnet_group_description = "Subnet group for the redis cluster"
+  subnet_ids = data.aws_subnet_ids.subnets.ids
+
+  security_group_id = module.security_group.id
+}

@@ -22,18 +22,14 @@ data "aws_ssm_parameter" "redis_cluster_password" {
   name = "redis-cluster-password"
 }
 
-locals {
-  redis_port = 6379
-}
-
 module "redis_cluster" {
   source = "github.com/bruno-chavez/tf-elasticache-redis-cluster"
 
   cluster_name = "cache-cluster"
-  cluster_description = "Redis cluster used for caching content"
-  node_type = "cache.t2.micro"
+  cluster_description = "Redis cluster used for pub-sub"
+  node_type = "cache.r5.large"
   password = data.aws_ssm_parameter.redis_cluster_password.value
-  port = local.redis_port
+  port = 6379
   redis_version = "5.0.6"
 
   number_of_shards = 4
@@ -47,5 +43,5 @@ module "redis_cluster" {
 
   maintenance_window = "sat:02:00-sat:04:00"
   snapshot_window = "05:00-06:00"
-  snapshot_retention_limit = 7
+  snapshot_retention_limit = 14
 }

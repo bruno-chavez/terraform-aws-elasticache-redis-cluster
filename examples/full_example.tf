@@ -14,24 +14,16 @@ data "aws_security_group" "ecs_security_group" {
   }
 }
 
+data "aws_security_group" "sg" {
+  name = "redis-sg"
+}
+
 data "aws_ssm_parameter" "redis_cluster_password" {
   name = "redis-cluster-password"
 }
 
 locals {
   redis_port = 6379
-}
-
-module "security_group" {
-  source = "github.com/bruno-chavez/tf-closed-security-group"
-
-  name = "redis-cluster-security-group"
-  description = "Security group for the redis cluster"
-  vpc_id = data.aws_vpc.vpc.id
-  protocol = "tcp"
-  ports = [local.redis_port, local.redis_port + 10000]
-
-  access_security_groups = [data.aws_security_group.ecs_security_group.id]
 }
 
 module "redis_cluster" {
@@ -51,7 +43,7 @@ module "redis_cluster" {
   subnet_group_description = "Subnet group for the redis cluster"
   subnet_ids = data.aws_subnet_ids.subnets.ids
 
-  security_group_id = module.security_group.id
+  security_group_id = data.aws_security_group.sg.id
 
   maintenance_window = "sat:02:00-sat:04:00"
   snapshot_window = "05:00-06:00"

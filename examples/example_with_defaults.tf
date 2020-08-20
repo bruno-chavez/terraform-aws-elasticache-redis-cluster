@@ -14,17 +14,10 @@ data "aws_security_group" "ecs_security_group" {
   }
 }
 
-data "aws_security_group" "sg" {
-  name = "redis-sg"
-}
-
 data "aws_ssm_parameter" "redis_cluster_password" {
   name = "redis-cluster-password"
 }
 
-locals {
-  redis_port = 6379
-}
 
 module "redis_cluster" {
   source = "github.com/bruno-chavez/tf-elasticache-redis-cluster"
@@ -43,5 +36,6 @@ module "redis_cluster" {
   subnet_group_description = "Subnet group for the redis cluster"
   subnet_ids = data.aws_subnet_ids.subnets.ids
 
-  security_group_id = data.aws_security_group.sg.id
+  vpc_id = data.aws_vpc.vpc.id
+  ingress_security_group_id = data.aws_security_group.ecs_security_group.id
 }

@@ -2,6 +2,13 @@
 
 An opinionated Terraform module with sensible defaults to create a single region AWS Redis ElastiCache cluster inside a previously created network
 
+# Generated Resources
+
++ A ElastiCache Redis Cluster
++ A subnet group for the cluster
++ A security group for the cluster
++ New security group egress rules for the clients' security group
+
 # Inputs
 ## Required
 + `cluster_name (string)`: Name for the Redis cluster
@@ -15,7 +22,8 @@ An opinionated Terraform module with sensible defaults to create a single region
 + `subnet_group_name (string)`: Name for the subnet group
 + `subnet_group_description (string)`: Description for the subnet group
 + `subnet_ids (list(string))`: List of the subnet ids used to create the subnet group
-+ `security_group_id (string)`: ID of the security group where the cluster will be placed
++ `ingress_security_group_id (string)`: ID of the client's security group 
++ `vpc_id (string)`: ID of the VPC where the cluster will be placed
 
 ## Optional
 + `maintenance_window (string)`: Weekly time range when maintenance happens. Defaults to `sun:05:00-sun:07:00`

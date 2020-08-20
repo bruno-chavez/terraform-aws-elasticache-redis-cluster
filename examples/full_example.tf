@@ -14,10 +14,6 @@ data "aws_security_group" "ecs_security_group" {
   }
 }
 
-data "aws_security_group" "sg" {
-  name = "redis-sg"
-}
-
 data "aws_ssm_parameter" "redis_cluster_password" {
   name = "redis-cluster-password"
 }
@@ -39,7 +35,8 @@ module "redis_cluster" {
   subnet_group_description = "Subnet group for the redis cluster"
   subnet_ids = data.aws_subnet_ids.subnets.ids
 
-  security_group_id = data.aws_security_group.sg.id
+  ingress_security_group_id = data.aws_security_group.ecs_security_group.id
+  vpc_id = data.aws_vpc.vpc.id
 
   maintenance_window = "sat:02:00-sat:04:00"
   snapshot_window = "05:00-06:00"

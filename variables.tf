@@ -74,7 +74,12 @@ variable "subnet_ids" {
 }
 
 # Security group variables
-variable "security_group_id" {
-  description = "ID of the security group where the cluster will be placed"
+variable "ingress_security_group_id" {
+  description = "ID of the client's security group"
+  type = string
+}
+
+variable "vpc_id" {
+  description = "ID of the VPC where the cluster will be placed"
   type = string
 }

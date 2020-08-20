@@ -9,6 +9,10 @@ An opinionated Terraform module with sensible defaults to create a single region
 + A security group for the cluster
 + New security group egress rules for the clients' security group
 
+# Required Providers
+
++ `aws`
+
 # Inputs
 ## Required
 + `cluster_name (string)`: Name for the Redis cluster
@@ -30,8 +34,9 @@ An opinionated Terraform module with sensible defaults to create a single region
 + `snapshot_window (string)`: Daily time range when snapshots are taken. Defaults to `02:00-04:00`
 + `snapshot_retention_window (string)`: Number of days for which ElastiCache will retain snapshots. Defaults to `7`
 
-#  Providers
-+ aws
+# Examples
+
+Examples of how to use the module can be found in the `examples` directory
 
 # Contribute
 

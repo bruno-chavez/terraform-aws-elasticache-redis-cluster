@@ -1,4 +1,4 @@
-resource "aws_security_group_rule" "ingress_security_group_rule" {
+resource "aws_security_group_rule" "elasticache_security_group_rule" {
   security_group_id = var.ingress_security_group_id
   description = "${var.cluster_name} access"
 
@@ -10,7 +10,7 @@ resource "aws_security_group_rule" "ingress_security_group_rule" {
   source_security_group_id = module.security_group.this_security_group_id
 }
 
-resource "aws_security_group_rule" "ingress_security_group_rule" {
+resource "aws_security_group_rule" "elasticache_config_security_group_rule" {
   security_group_id = var.ingress_security_group_id
   description = "${var.cluster_name} config endpoint access"
 

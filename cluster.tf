@@ -13,6 +13,7 @@ resource "aws_elasticache_replication_group" "redis_cluster" {
   subnet_group_name = aws_elasticache_subnet_group.redis_cluster_subnet_group.name
   security_group_ids = [module.security_group.this_security_group_id]
 
+  parameter_group_name = "default.redis5.0.cluster.on"
   automatic_failover_enabled = true
   auto_minor_version_upgrade = true
   at_rest_encryption_enabled = true

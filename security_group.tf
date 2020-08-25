@@ -13,7 +13,7 @@ module "security_group" {
       from_port = var.port
       to_port = var.port
       protocol = "tcp"
-      description = "grants access"
+      description = "grants access to the redis cluster"
       source_security_group_id = var.ingress_security_group_id
     },
     {

@@ -20,7 +20,7 @@ variable "password" {
 }
 
 variable "redis_version" {
-  description = "Redis version to be used on each node"
+  description = "Redis version user for the cluster, supports only 5.0.x versions"
   type = string
 }
 
@@ -80,6 +80,6 @@ variable "ingress_security_group_id" {
 }
 
 variable "vpc_id" {
-  description = "ID of the VPC where the cluster will be placed"
+  description = "ID of the VPC where the security group will be placed"
   type = string
 }

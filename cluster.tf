@@ -1,10 +1,12 @@
 resource "aws_elasticache_replication_group" "redis_cluster" {
   replication_group_id = var.cluster_name
   replication_group_description = var.cluster_description
+
   node_type = var.node_type
   auth_token = var.password
   port = var.port
   engine_version = var.redis_version
+  transit_encryption_enabled = var.enable_transit_encryption
 
   maintenance_window = var.maintenance_window
   snapshot_window = var.snapshot_window
@@ -17,7 +19,6 @@ resource "aws_elasticache_replication_group" "redis_cluster" {
   automatic_failover_enabled = true
   auto_minor_version_upgrade = true
   at_rest_encryption_enabled = true
-  transit_encryption_enabled = true
   apply_immediately = true
 
   cluster_mode {

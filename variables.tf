@@ -19,14 +19,20 @@ variable "password" {
   type = string
 }
 
-variable "redis_version" {
-  description = "Redis version user for the cluster, supports only 5.0.x versions"
-  type = string
-}
-
 variable "port" {
   description = "Port used for communication between clients and the cluster"
   type = number
+}
+
+variable "redis_version" {
+  description = "Redis version user for the cluster, supports only Redis 5.0.x"
+  type = string
+}
+
+variable "enable_transit_encryption" {
+  description = "Enables communication with the cluster through SSL"
+  type = bool
+  default = true
 }
 
 variable "maintenance_window" {

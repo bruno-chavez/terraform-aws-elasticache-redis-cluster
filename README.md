@@ -7,14 +7,14 @@ An opinionated Terraform module with sensible defaults to create a single region
 + A ElastiCache Redis Cluster
 + A subnet group for the cluster
 + A security group for the cluster
-+ New security group egress rules for the clients' security group
++ A SSM Parameter with the cluster configuration url
 
 # Required Providers
 
 + `aws`
 
 # Inputs
-## Required
+### Required
 + `cluster_name (string)`: Name for the Redis cluster
 + `cluster_description (string)`: Description for the Redis cluster
 + `node_type (string)`: Compute and memory size for each node
@@ -26,10 +26,10 @@ An opinionated Terraform module with sensible defaults to create a single region
 + `subnet_group_name (string)`: Name for the subnet group
 + `subnet_group_description (string)`: Description for the subnet group
 + `subnet_ids (list(string))`: List of the subnet ids used to create the subnet group
-+ `ingress_security_group_id (string)`: ID of the client's security group 
 + `vpc_id (string)`: ID of the VPC where the cluster will be placed
 
-## Optional
+### Optional
++ `enable_transit_encryption`: Enables communication with the cluster through SSL
 + `maintenance_window (string)`: Weekly time range when maintenance happens. Defaults to `sun:05:00-sun:07:00`
 + `snapshot_window (string)`: Daily time range when snapshots are taken. Defaults to `02:00-04:00`
 + `snapshot_retention_window (string)`: Number of days for which ElastiCache will retain snapshots. Defaults to `7`

@@ -37,5 +37,4 @@ module "redis_cluster" {
   subnet_ids = data.aws_subnet_ids.subnets.ids
 
   vpc_id = data.aws_vpc.vpc.id
-  ingress_security_group_id = data.aws_security_group.ecs_security_group.id
 }

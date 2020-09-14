@@ -4,10 +4,10 @@ An opinionated Terraform module with sensible defaults to create a single region
 
 # Generated Resources
 
-+ A ElastiCache Redis Cluster
-+ A subnet group for the cluster
-+ A security group for the cluster
-+ A SSM Parameter with the cluster configuration url
++ ElastiCache Redis cluster
++ Subnet Group for the cluster
++ Security Group for the cluster
++ SSM Parameter with the cluster configuration url
 
 # Required Providers
 
@@ -29,7 +29,7 @@ An opinionated Terraform module with sensible defaults to create a single region
 + `vpc_id (string)`: ID of the VPC where the cluster will be placed
 
 ### Optional
-+ `enable_transit_encryption`: Enables communication with the cluster through SSL
++ `enable_transit_encryption (bool)`: Enables communication with the cluster through SSL. Defaults to `true`
 + `maintenance_window (string)`: Weekly time range when maintenance happens. Defaults to `sun:05:00-sun:07:00`
 + `snapshot_window (string)`: Daily time range when snapshots are taken. Defaults to `02:00-04:00`
 + `snapshot_retention_window (string)`: Number of days for which ElastiCache will retain snapshots. Defaults to `7`

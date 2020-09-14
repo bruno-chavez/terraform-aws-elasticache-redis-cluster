@@ -79,12 +79,6 @@ variable "subnet_ids" {
   type = list(string)
 }
 
-# Security group variables
-variable "ingress_security_group_id" {
-  description = "ID of the client's security group"
-  type = string
-}
-
 variable "vpc_id" {
   description = "ID of the VPC where the security group will be placed"
   type = string

@@ -26,7 +26,6 @@ module "redis_cluster" {
   node_type = "cache.r5.large"
   password = data.aws_ssm_parameter.redis_cluster_password.value
   port = 6379
-  redis_version = "5.0.6"
   enable_transit_encryption = true
 
   number_of_shards = 4

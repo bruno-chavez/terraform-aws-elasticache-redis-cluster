@@ -27,7 +27,6 @@ module "redis_cluster" {
   node_type = "cache.t2.micro"
   password = data.aws_ssm_parameter.redis_cluster_password.value
   port = 6379
-  redis_version = "5.0.6"
 
   number_of_shards = 3
   replicas_per_shard = 1

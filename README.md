@@ -19,7 +19,6 @@ An opinionated Terraform module with sensible defaults to create a single region
 + `cluster_description (string)`: Description for the Redis cluster
 + `node_type (string)`: Compute and memory size for each node
 + `password (string)`: Password used for authentication between the cluster and clients
-+ `redis_version (string)`: Redis version to be used on each node
 + `port (number)`: Port used for communication between clients and the cluster
 + `number_of_shards (number)`: Number of write nodes (shards) in the cluster
 + `replicas_per_shard (number)`: Number of read replicas per shard

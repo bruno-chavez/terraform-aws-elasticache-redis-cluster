@@ -5,7 +5,6 @@ resource "aws_elasticache_replication_group" "redis_cluster" {
   node_type = var.node_type
   auth_token = var.password
   port = var.port
-  engine_version = var.redis_version
   transit_encryption_enabled = var.enable_transit_encryption
 
   maintenance_window = var.maintenance_window
@@ -15,7 +14,8 @@ resource "aws_elasticache_replication_group" "redis_cluster" {
   subnet_group_name = aws_elasticache_subnet_group.redis_cluster_subnet_group.name
   security_group_ids = [module.security_group.this_security_group_id]
 
-  parameter_group_name = "default.redis5.0.cluster.on"
+  engine_version = "6.x"
+  parameter_group_name = "default.redis6.x.cluster.on"
   automatic_failover_enabled = true
   auto_minor_version_upgrade = true
   at_rest_encryption_enabled = true

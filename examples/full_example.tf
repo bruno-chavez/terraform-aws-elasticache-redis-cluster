@@ -19,7 +19,7 @@ data "aws_ssm_parameter" "redis_cluster_password" {
 }
 
 module "redis_cluster" {
-  source = "github.com/bruno-chavez/tf-elasticache-redis-cluster"
+  source = "github.com/bruno-chavez/terraform-aws-elasticache-redis-cluster"
 
   cluster_name = "cache-cluster"
   cluster_description = "Redis cluster used for pub-sub"
